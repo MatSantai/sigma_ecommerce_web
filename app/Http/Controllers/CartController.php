@@ -21,7 +21,7 @@ class CartController extends Controller
     {
         $request->validate([
             'quantity' => 'required|integer|min:1',
-            'size' => 'required|string|in:' . implode(',', $product->sizes)
+            'size' => 'required|string|in:' . implode(',', $product->productSizes()->pluck('size')->toArray())
         ]);
 
         // Get stock for the specific size
