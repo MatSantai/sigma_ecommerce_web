@@ -129,32 +129,38 @@
             <!-- Contact Information -->
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto mb-4">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">Address</h3>
-                    <a href="https://maps.google.com/?q=123+Sigma+Street+Kuala+Lumpur+Malaysia" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
-                        123 Sigma Street<br>Kuala Lumpur, Malaysia
+                    <a href="https://maps.google.com/?q=123+Sigma+Street+Kuala+Lumpur+Malaysia" target="_blank" class="block group">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto mb-4 group-hover:bg-blue-700 transition-colors duration-200">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Address</h3>
+                        <span class="text-gray-400 group-hover:text-blue-400 transition-colors duration-200">
+                            123 Sigma Street<br>Kuala Lumpur, Malaysia
+                        </span>
                     </a>
                 </div>
 
                 <div class="text-center">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto mb-4">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">Phone</h3>
-                    <a href="https://wa.me/60123456789" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
-                        +60 12-345 6789
+                    <a href="tel:+60123456789" class="block group">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto mb-4 group-hover:bg-blue-700 transition-colors duration-200">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Phone</h3>
+                        <span class="text-gray-400 group-hover:text-blue-400 transition-colors duration-200">
+                            +60 12-345 6789
+                        </span>
                     </a>
                 </div>
 
                 <div class="text-center">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto mb-4">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">Email</h3>
-                    <a href="mailto:info@sigmashop.com" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
-                        info@sigmashop.com
+                    <a href="mailto:info@sigmashop.com" class="block group">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto mb-4 group-hover:bg-blue-700 transition-colors duration-200">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Email</h3>
+                        <span class="text-gray-400 group-hover:text-blue-400 transition-colors duration-200">
+                            info@sigmashop.com
+                        </span>
                     </a>
                 </div>
             </div>

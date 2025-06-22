@@ -1,99 +1,243 @@
-# Get Started
+# Sigma Shop - E-commerce Website
 
-Here is the step-by-step guide to set up the Sigma Shop e-commerce website:
+A modern, full-featured e-commerce platform built with Laravel 12, featuring a responsive design, admin dashboard, and comprehensive shopping experience.
 
-## Prerequisites ⚠️
-- XAMPP installed and running (Apache & MySQL)
-- Composer installed
-- Node.js and npm installed
-- VS Code (recommended) or any code editor
+## 🚀 Features
 
-## Setup Steps
+### Customer Features
 
-**1. Download and Extract**
-- Download the project folder
-- Unzip the file
-- Paste the sigma_ecommerce_web folder into C:\xampp\htdocs\dashboard
+-   **User Authentication**: Registration, login, password reset
+-   **Product Browsing**: Browse products with search and filtering
+-   **Shopping Cart**: Add, update, and remove items
+-   **Order Management**: Place orders and track order status
+-   **User Profile**: Manage personal information and view order history
+-   **Contact Form**: Send inquiries with clickable contact information
 
-**2. Database Setup**
-- Open your browser and go to http://localhost/phpmyadmin
-- Create a new database called sigma_ecommerce_web
+### Admin Features
 
-**3. Project Configuration**
-- Open VS Code and open the sigma_ecommerce_web folder
-- Go to the .env file and ensure:
+-   **Dashboard**: Overview of sales, orders, and products
+-   **Product Management**: Create, edit, and manage products with featured status
+-   **Order Management**: View and update order statuses
+-   **Contact Management**: Handle customer inquiries
+-   **User Management**: Monitor customer accounts
+
+### Technical Features
+
+-   **Responsive Design**: Mobile-first approach with Tailwind CSS
+-   **Real-time Updates**: Dynamic cart and order status updates
+-   **File Upload**: Product image management
+-   **Database Seeding**: Sample data for testing
+-   **Security**: CSRF protection, input validation, and authentication
+
+## 🛠️ Technology Stack
+
+-   **Backend**: Laravel 12 (PHP 8.2+)
+-   **Frontend**: Blade templates with Tailwind CSS
+-   **Database**: MySQL
+-   **Authentication**: Laravel's built-in authentication
+-   **Icons**: Font Awesome
+-   **Development**: XAMPP, Composer, Node.js
+
+## 📋 Prerequisites
+
+-   XAMPP installed and running (Apache & MySQL)
+-   Composer installed
+-   Node.js and npm installed
+-   VS Code (recommended) or any code editor
+
+## 🚀 Installation & Setup
+
+### 1. Project Setup
+
+```bash
+# Download and extract the project
+# Place sigma_ecommerce_web folder in C:\xampp\htdocs\dashboard
+```
+
+### 2. Database Configuration
+
+```bash
+# Open http://localhost/phpmyadmin
+# Create a new database called 'sigma_ecommerce_web'
+```
+
+### 3. Environment Configuration
+
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Update .env file with your database settings:
 APP_NAME='Sigma Shop'
 DB_DATABASE=sigma_ecommerce_web
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-**4. Environment Setup**
+### 4. Install Dependencies
 
-_Copy the environment file_
+```bash
+# Install PHP dependencies
+composer install
 
-- cp .env.example .env
+# Install Node.js dependencies
+npm install
+```
 
-**5. Install Dependencies**
+### 5. Application Setup
 
-_Install Laravel dependencies via Composer_
+```bash
+# Generate application key
+php artisan key:generate
 
-- composer install
+# Run database migrations
+php artisan migrate
 
-_(This may take a few minutes to complete)_
+# Seed database with sample data
+php artisan db:seed
 
-**6. Generate Application Key**
+# Create storage link for file uploads
+php artisan storage:link
+```
 
-- php artisan key:generate
+### 6. Build Frontend Assets
 
-**7. Database Setup**
+```bash
+# Build for production
+npm run build
 
-_Run all database migrations_
+# Or for development
+npm run dev
+```
 
-- php artisan migrate
-   
-_Run database seeders to populate with sample data_
+### 7. Start the Application
 
-- php artisan db:seed
+```bash
+# Start Laravel development server
+php artisan serve
+```
 
-**8. File Storage Setup**
+## 🌐 Access the Website
 
-_Create symbolic link for file storage (for product images)_
+-   **Main Site**: http://localhost:8000
+-   **Admin Dashboard**: http://localhost:8000/admin/dashboard
 
-- php artisan storage:link
+## 👤 Default Login Credentials
 
-**9. Frontend Setup**
+### Admin Account
 
-_Install Node.js dependencies_
+-   **Email**: admin@sigma.com
+-   **Password**: admin123
 
-- npm install
-   
-_Compile and build frontend assets_
+### Customer Account
 
-- npm run build
+-   **Email**: customer@sigma.com
+-   **Password**: password
 
-**10. Start the Application**
+## 📁 Project Structure
 
-_Start Laravel development server_
+```
+sigma_ecommerce_web/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── Admin/          # Admin controllers
+│   │   ├── Auth/           # Authentication controllers
+│   │   └── ...             # Main controllers
+│   ├── Models/             # Eloquent models
+│   └── Middleware/         # Custom middleware
+├── database/
+│   ├── migrations/         # Database migrations
+│   └── seeders/           # Database seeders
+├── resources/views/
+│   ├── admin/             # Admin views
+│   ├── auth/              # Authentication views
+│   └── ...                # Main views
+└── routes/
+    └── web.php            # Web routes
+```
 
-- php artisan serve
+## 🔧 Key Features Explained
 
-## Access the Website
-Open your browser and go to: http://localhost:8000
+### Contact Page
 
-## Default Login Credentials
+-   Interactive contact form with validation
+-   Clickable contact information (address, phone, email)
+-   Address opens Google Maps
+-   Phone number uses tel: protocol
+-   Email uses mailto: protocol
 
-**Admin Account:**
-- Email: admin@sigma.com
-- Password: admin123
+### Shopping Cart
 
-**Customer Account:**
-- Email: customer@sigma.com
-- Password: password
+-   Persistent cart functionality
+-   Real-time quantity updates
+-   Remove items functionality
+-   Checkout process
 
-## Features Available
-- User registration and login
-- Product browsing and search
-- Shopping cart functionality
-- Order placement and tracking
-- Admin dashboard for product management
-- User profile management
+### Admin Dashboard
 
-Need help? Feel free to ask questions! 👌🏻
+-   Product management with CRUD operations
+-   Order tracking and status updates
+-   Contact inquiry management
+-   Featured product toggling
+
+## 🎨 Customization
+
+### Styling
+
+-   Uses Tailwind CSS for styling
+-   Custom CSS in `resources/css/app.css`
+-   Responsive design for all screen sizes
+
+### Database
+
+-   Easy to modify database structure via migrations
+-   Sample data provided via seeders
+-   Easy to add new features
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Composer install fails**: Ensure PHP 8.2+ is installed
+2. **Database connection error**: Check XAMPP MySQL service is running
+3. **Storage link error**: Run `php artisan storage:link` again
+4. **Permission errors**: Ensure proper file permissions on storage directory
+
+### Development Commands
+
+```bash
+# Clear cache
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Regenerate autoload files
+composer dump-autoload
+
+# Run tests
+php artisan test
+```
+
+## 📝 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📞 Support
+
+For support and questions, please contact:
+
+-   **Email**: info@sigmashop.com
+-   **Phone**: +60 12-345 6789
+-   **Address**: 123 Sigma Street, Kuala Lumpur, Malaysia
+
+---
+
+**Happy Coding! 🎉**
