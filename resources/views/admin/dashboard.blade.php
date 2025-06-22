@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Stats Overview -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div class="bg-gray-800 rounded-lg p-6">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-blue-500 bg-opacity-20">
@@ -40,6 +40,18 @@
                         <div class="ml-4">
                             <h3 class="text-lg font-semibold text-gray-300">Total Revenue</h3>
                             <p class="text-2xl font-bold text-white">RM{{ number_format($stats['total_revenue'], 2) }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-500 bg-opacity-20">
+                            <i class="fas fa-envelope text-2xl text-purple-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-300">Unread Messages</h3>
+                            <p class="text-2xl font-bold text-white">{{ \App\Models\Contact::unread()->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +143,7 @@
             <!-- Quick Actions -->
             <div class="mt-8">
                 <h2 class="text-xl font-bold text-white mb-4">Quick Actions</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <a href="{{ route('admin.products.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-4 text-center transition">
                         <i class="fas fa-plus text-2xl mb-2"></i>
                         <span class="block font-medium">Add New Product</span>
@@ -143,6 +155,10 @@
                     <a href="{{ route('admin.orders.index') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg p-4 text-center transition">
                         <i class="fas fa-list text-2xl mb-2"></i>
                         <span class="block font-medium">View All Orders</span>
+                    </a>
+                    <a href="{{ route('admin.contacts.index') }}" class="bg-purple-500 hover:bg-purple-600 text-white rounded-lg p-4 text-center transition">
+                        <i class="fas fa-envelope text-2xl mb-2"></i>
+                        <span class="block font-medium">Contact Messages</span>
                     </a>
                 </div>
             </div>

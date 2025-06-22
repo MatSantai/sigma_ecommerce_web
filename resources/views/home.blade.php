@@ -144,4 +144,69 @@
             </div>
         </div>
     </div>
+
+    </div>
+</div>
+
+<!-- Welcome Popup Example -->
+<div id="welcomePopup" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div class="px-6 py-4 border-b border-gray-700 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-white">Welcome to Sigma Shop!</h3>
+            <button onclick="closeWelcomePopup()" class="text-gray-400 hover:text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="px-6 py-4">
+            <p class="text-gray-300 mb-4">
+                Welcome to our premium streetwear collection! Discover the latest trends and exclusive designs.
+            </p>
+            <div class="flex justify-end">
+                <button onclick="closeWelcomePopup()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Show welcome popup when page loads (only once)
+    window.onload = function() {
+        // Check if user has already seen the popup
+        const hasSeenPopup = localStorage.getItem('hasSeenWelcomePopup');
+        
+        if (!hasSeenPopup) {
+            // Show popup after 2 seconds only if they haven't seen it
+            setTimeout(function() {
+                showWelcomePopup();
+            }, 2000);
+        }
+    };
+    
+    function showWelcomePopup() {
+        document.getElementById('welcomePopup').classList.remove('hidden');
+        // Mark that user has seen the popup
+        localStorage.setItem('hasSeenWelcomePopup', 'true');
+    }
+    
+    function closeWelcomePopup() {
+        document.getElementById('welcomePopup').classList.add('hidden');
+    }
+    
+    // Close popup when clicking outside
+    document.getElementById('welcomePopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeWelcomePopup();
+        }
+    });
+    
+    // Close popup with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeWelcomePopup();
+        }
+    });
+</script>
+
 @endsection 

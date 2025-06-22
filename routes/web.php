@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -12,9 +13,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 // Public Routes
 Route::get('/', [ProductController::class, 'featured'])->name('home');
+
+// Contact Routes (Public)
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -60,6 +66,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('products', AdminProductController::class);
     Route::patch('products/{product}/toggle-featured', [AdminProductController::class, 'toggleFeatured'])->name('products.toggleFeatured');
     Route::resource('orders', AdminOrderController::class)->only(['index', 'show', 'update']);
+    Route::resource('contacts', AdminContactController::class)->only(['index', 'show', 'destroy']);
+    Route::patch('contacts/{contact}/status', [AdminContactController::class, 'updateStatus'])->name('contacts.update-status');
 });
 
 // Register Admin Middleware
