@@ -1,49 +1,99 @@
-## Get Started
+# Get Started
 
-Here is the step-by-step to ensure the download until the website is going smoothly:
+Here is the step-by-step guide to set up the Sigma Shop e-commerce website:
 
-(Open the xampp and start the apache and MySQL)⚠
+## Prerequisites ⚠️
+- XAMPP installed and running (Apache & MySQL)
+- Composer installed
+- Node.js and npm installed
+- VS Code (recommended) or any code editor
 
-1. Download the folder
+## Setup Steps
 
-2. Unzip the file
+**1. Download and Extract**
+- Download the project folder
+- Unzip the file
+- Paste the sigma_ecommerce_web folder into C:\xampp\htdocs\dashboard
 
-3. Paste the sigma_ecommerce_web folder into C:\xampp\htdocs\dashboard
+**2. Database Setup**
+- Open your browser and go to http://localhost/phpmyadmin
+- Create a new database called sigma_ecommerce_web
 
-4. Go to google and search http://localhost/phpmyadmin
+**3. Project Configuration**
+- Open VS Code and open the sigma_ecommerce_web folder
+- Go to the .env file and ensure:
+APP_NAME='Sigma Shop'
+DB_DATABASE=sigma_ecommerce_web
 
-5. Create a new database called sigma_ecommerce_web
+**4. Environment Setup**
 
-6. Go to VSCode and open folder of the sigma_ecommerce_web
+_Copy the environment file_
 
-7. Go to the .env and ensure that the APP_NAME='Sigma Shop' and DB_DATABASE=sigma_ecommerce_web
+- cp .env.example .env
 
-8. Go to terminal and run this command (Copy the environment file):
-cp .env.example .env
+**5. Install Dependencies**
 
-9. Then, this command (Install Laravel dependencies via Composer):
-composer install
-(It will take a little bit time to install, just chill)
+_Install Laravel dependencies via Composer_
 
-9. Then, this command (Generate application key):
-php artisan key:generate
+- composer install
 
-10. Then, this command (Run all database migrations):
-php artisan migrate
+_(This may take a few minutes to complete)_
 
-11. Then, this command (Run database seeders to populate with sample data):
-php artisan db:seed
+**6. Generate Application Key**
 
-12. Then, this command (Create symbolic link for file storage (for product images)):
-php artisan storage:link
+- php artisan key:generate
 
-13. Then, this command (Install Node.js dependencies):
-npm install
+**7. Database Setup**
 
-14. Then, this command (Compile and build frontend assets):
-npm run build
+_Run all database migrations_
 
-15. Lastly, this command (Start Laravel development server):
-php artisan serve
+- php artisan migrate
+   
+_Run database seeders to populate with sample data_
 
-Hope you guys getting all the steps and if there any questions can feel free to ask 👌🏻
+- php artisan db:seed
+
+**8. File Storage Setup**
+
+_Create symbolic link for file storage (for product images)_
+
+- php artisan storage:link
+
+**9. Frontend Setup**
+
+_Install Node.js dependencies_
+
+- npm install
+   
+_Compile and build frontend assets_
+
+- npm run build
+
+**10. Start the Application**
+
+_Start Laravel development server_
+
+- php artisan serve
+
+## Access the Website
+Open your browser and go to: http://localhost:8000
+
+## Default Login Credentials
+
+**Admin Account:**
+- Email: admin@sigma.com
+- Password: admin123
+
+**Customer Account:**
+- Email: customer@sigma.com
+- Password: password
+
+## Features Available
+- User registration and login
+- Product browsing and search
+- Shopping cart functionality
+- Order placement and tracking
+- Admin dashboard for product management
+- User profile management
+
+Need help? Feel free to ask questions! 👌🏻
