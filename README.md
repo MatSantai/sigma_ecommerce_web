@@ -18,27 +18,32 @@ Here is the step-by-step to ensure the download until the website is going smoot
 
 7. Go to the .env and ensure that the APP_NAME='Sigma Shop' and DB_DATABASE=sigma_ecommerce_web
 
-8. Go to terminal and run this command:
+8. Go to terminal and run this command (Copy the environment file):
+cp .env.example .env
+
+9. Then, this command (Install Laravel dependencies via Composer):
 composer install
 (It will take a little bit time to install, just chill)
 
-9. Then, this command:
+9. Then, this command (Generate application key):
 php artisan key:generate
 
-10. Then, this command:
+10. Then, this command (Run all database migrations):
 php artisan migrate
 
-11. Then, this command:
-php artisan config:clear
-php artisan cache:clear
-php artisan config:cache
+11. Then, this command (Run database seeders to populate with sample data):
+php artisan db:seed
 
-12. Then,
+12. Then, this command (Create symbolic link for file storage (for product images)):
 php artisan storage:link
 
-13. Lastly, this command:
-php artisan migrate:refresh --seed
+13. Then, this command (Install Node.js dependencies):
+npm install
 
-And then, you can just command php artisan serve to run it on the localhost 😁😁
+14. Then, this command (Compile and build frontend assets):
+npm run build
+
+15. Lastly, this command (Start Laravel development server):
+php artisan serve
 
 Hope you guys getting all the steps and if there any questions can feel free to ask 👌🏻
