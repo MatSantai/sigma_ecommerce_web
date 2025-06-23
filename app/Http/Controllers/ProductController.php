@@ -25,9 +25,32 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->latest()->paginate(12);
+        // Handle sorting
+        $sort = $request->get('sort', 'latest');
+        switch ($sort) {
+            case 'price_low_high':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_high_low':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'name_az':
+                $query->orderBy('name', 'asc');
+                break;
+            case 'name_za':
+                $query->orderBy('name', 'desc');
+                break;
+            case 'featured':
+                $query->where('is_featured', true)->orderBy('created_at', 'desc');
+                break;
+            default: // 'latest'
+                $query->latest();
+                break;
+        }
 
-        return view('products.index', compact('products', 'currentCategory'));
+        $products = $query->paginate(12);
+
+        return view('products.index', compact('products', 'currentCategory', 'sort'));
     }
 
     public function show(Product $product)

@@ -55,30 +55,119 @@
     </script>
 
     <!-- Featured Products -->
-    <div class="bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h2 class="text-3xl font-bold text-white mb-8">Featured Products</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4">Featured Products</h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Discover our handpicked collection of premium streetwear and accessories</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($featuredProducts as $product)
-                <div class="group relative">
-                    <a href="{{ route('products.show', $product->slug) }}">
-                        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-800">
-                            <img src="{{ $product->image }}" alt="{{ $product->name }}" class="object-cover object-center group-hover:opacity-75">
-                        </div>
-                    </a>
-                    <div class="mt-4 flex justify-between">
-                        <div>
-                            <h3 class="text-sm text-gray-300">
-                                <a href="{{ route('products.show', $product->slug) }}" class="hover:text-white transition-colors duration-200">
-                                    {{ $product->name }}
+                <div class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                    <!-- Product Image Container -->
+                    <div class="relative overflow-hidden">
+                        <a href="{{ route('products.show', $product->slug) }}">
+                            <img src="{{ $product->image }}" 
+                                 alt="{{ $product->name }}" 
+                                 class="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500">
+                        </a>
+                        
+                        <!-- Hover Overlay -->
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                                <a href="{{ route('products.show', $product->slug) }}" 
+                                   class="inline-flex items-center px-4 py-2 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors duration-200">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Details
                                 </a>
-                            </h3>
-                            <p class="mt-1 text-sm text-gray-400">{{ $product->category }}</p>
+                            </div>
                         </div>
-                        <p class="text-sm font-medium text-white">RM{{ number_format($product->price, 2) }}</p>
+
+                        <!-- Featured Badge -->
+                        <div class="absolute top-4 left-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg">
+                                <i class="fas fa-star mr-1"></i>
+                                Featured
+                            </span>
+                        </div>
+
+                        <!-- Quick Add to Cart -->
+                        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <button class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-lg transition-colors duration-200">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-700 text-gray-300">
+                                {{ $product->category }}
+                            </span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <span class="text-sm text-gray-400 ml-1">4.8</span>
+                            </div>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors duration-200">
+                            <a href="{{ route('products.show', $product->slug) }}">
+                                {{ $product->name }}
+                            </a>
+                        </h3>
+
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">
+                            Premium quality streetwear designed for modern fashion enthusiasts.
+                        </p>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-white">RM{{ number_format($product->price, 2) }}</span>
+                                @if($product->price > 100)
+                                <span class="text-sm text-gray-500 line-through">RM{{ number_format($product->price * 1.2, 2) }}</span>
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-500 text-white">
+                                    -20%
+                                </span>
+                                @endif
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <button class="w-8 h-8 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-full flex items-center justify-center transition-colors duration-200">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="w-8 h-8 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-full flex items-center justify-center transition-colors duration-200">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Stock Status -->
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-green-400 flex items-center">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    In Stock
+                                </span>
+                                <span class="text-gray-400">Free Shipping</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @endforeach
+            </div>
+
+            <!-- View All Products Button -->
+            <div class="text-center mt-12">
+                <a href="{{ route('products.index') }}" 
+                   class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <span>View All Products</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </div>
