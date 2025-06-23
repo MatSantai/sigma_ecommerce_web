@@ -131,7 +131,7 @@ php artisan serve
 
 ### Customer Account
 
--   **Email**: customer@sigma.com
+-   **Email**: test@example.com
 -   **Password**: password
 
 ## 📁 Project Structure
