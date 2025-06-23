@@ -29,6 +29,14 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="text-gray-300 hover:text-white">Home</a>
                     <a href="/products" class="text-gray-300 hover:text-white">Shop</a>
+                    @auth
+                        @if(auth()->user()->isAdmin())
+                            <a href="{{ route('admin.messages.index') }}" class="text-gray-300 hover:text-white">
+                                <i class="fas fa-comments mr-1"></i>
+                                Message Board
+                            </a>
+                        @endif
+                    @endauth
                     <a href="/contact" class="text-gray-300 hover:text-white">Contact</a>
                     @auth
                         @if(auth()->user()->isAdmin())
@@ -78,6 +86,14 @@
                 <div class="px-2 pt-2 pb-3 space-y-1">
                     <a href="/" class="block px-3 py-2 text-gray-300 hover:text-white">Home</a>
                     <a href="/products" class="block px-3 py-2 text-gray-300 hover:text-white">Shop</a>
+                    @auth
+                        @if(auth()->user()->isAdmin())
+                            <a href="{{ route('admin.messages.index') }}" class="block px-3 py-2 text-gray-300 hover:text-white">
+                                <i class="fas fa-comments mr-2"></i>
+                                Message Board
+                            </a>
+                        @endif
+                    @endauth
                     <a href="/contact" class="block px-3 py-2 text-gray-300 hover:text-white">Contact</a>
                     @auth
                         @if(auth()->user()->isAdmin())
@@ -127,11 +143,120 @@
         </p>
     </footer>
 
+    <!-- Floating Help Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="helpButton" onclick="toggleHelpModal()" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-300 group">
+            <div class="flex items-center">
+                <span class="text-sm font-medium mr-2">Help</span>
+                <i class="fas fa-question text-xl"></i>
+            </div>
+            <!-- Tooltip -->
+            <div class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                Need help? Click here for FAQ and support
+                <div class="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+        </button>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between p-6 border-b border-gray-700">
+                    <h2 class="text-2xl font-bold text-white">Help & FAQ</h2>
+                    <button onclick="toggleHelpModal()" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Content -->
+                <div class="p-6">
+                    <!-- Quick Help Section -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-white mb-4">Quick Help</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-lg font-medium text-white mb-2">How to Shop</h4>
+                                <p class="text-gray-300 text-sm">Browse products, add to cart, and checkout easily.</p>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-lg font-medium text-white mb-2">Account Help</h4>
+                                <p class="text-gray-300 text-sm">Create account, manage profile, and track orders.</p>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-lg font-medium text-white mb-2">Payment & Shipping</h4>
+                                <p class="text-gray-300 text-sm">Secure payments and fast delivery options.</p>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-lg font-medium text-white mb-2">Returns & Support</h4>
+                                <p class="text-gray-300 text-sm">Easy returns and 24/7 customer support.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick FAQ -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-white mb-4">Quick Questions</h3>
+                        <div class="space-y-3">
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-white font-medium">How do I create an account?</h4>
+                                <p class="text-gray-300 text-sm mt-1">Click "Register" in the top navigation and fill in your details.</p>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-white font-medium">What payment methods do you accept?</h4>
+                                <p class="text-gray-300 text-sm mt-1">We accept all major credit cards, debit cards, and digital wallets.</p>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <h4 class="text-white font-medium">How long does shipping take?</h4>
+                                <p class="text-gray-300 text-sm mt-1">Standard shipping takes 3-5 business days.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="{{ route('help.index') }}" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-3 px-6 rounded-lg font-medium transition-colors">
+                            <i class="fas fa-book mr-2"></i>
+                            View Full Help Guide
+                        </a>
+                        <a href="{{ route('contact.show') }}" class="flex-1 bg-gray-600 hover:bg-gray-700 text-white text-center py-3 px-6 rounded-lg font-medium transition-colors">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         }
+
+        function toggleHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('helpModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleHelpModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('helpModal');
+                if (!modal.classList.contains('hidden')) {
+                    toggleHelpModal();
+                }
+            }
+        });
     </script>
 </body>
 </html> 

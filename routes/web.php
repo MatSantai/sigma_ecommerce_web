@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -14,9 +15,14 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
+use App\Http\Controllers\HelpController;
 
 // Public Routes
 Route::get('/', [ProductController::class, 'featured'])->name('home');
+
+// Help/FAQ Routes
+Route::get('/help', [HelpController::class, 'index'])->name('help.index');
+Route::get('/help/content', [HelpController::class, 'getHelpContent'])->name('help.content');
 
 // Contact Routes (Public)
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
@@ -68,6 +74,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('orders', AdminOrderController::class)->only(['index', 'show', 'update']);
     Route::resource('contacts', AdminContactController::class)->only(['index', 'show', 'destroy']);
     Route::patch('contacts/{contact}/status', [AdminContactController::class, 'updateStatus'])->name('contacts.update-status');
+    
+    // Message Board Routes (Admin Only)
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+    Route::get('/messages/{message}/edit', [MessageController::class, 'edit'])->name('messages.edit');
+    Route::put('/messages/{message}', [MessageController::class, 'update'])->name('messages.update');
+    Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::patch('/messages/{message}/toggle-pin', [MessageController::class, 'togglePin'])->name('messages.toggle-pin');
+    Route::get('/messages/search', [MessageController::class, 'search'])->name('messages.search');
 });
 
 // Register Admin Middleware
