@@ -94,13 +94,6 @@
                                 Featured
                             </span>
                         </div>
-
-                        <!-- Quick Add to Cart -->
-                        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <button class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-lg transition-colors duration-200">
-                                <i class="fas fa-shopping-cart"></i>
-                            </button>
-                        </div>
                     </div>
 
                     <!-- Product Info -->
